@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<style>
+body{
+margin:0;
+font-family: 'Segoe UI', sans-serif;
+background:#fff5f7;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+text-align:center;
+overflow:hidden;
+}
+
+.page{display:none;}
+.active{display:block;}
+
+button{
+padding:12px 25px;
+margin:10px;
+border:none;
+border-radius:25px;
+background:#ff6b81;
+color:white;
+font-size:18px;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+background:#ff4757;
+}
+
+h1{color:#ff4d6d;}
+p{max-width:600px;font-size:18px;line-height:1.6;}
+
+#hearts{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+overflow:hidden;
+}
+
+.heart{
+position:absolute;
+color:#ff6b81;
+font-size:20px;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);opacity:1;}
+100%{transform:translateY(-10vh);opacity:0;}
+}
+
+iframe{border:none;}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC (starts at 5 seconds) -->
+<iframe id="music"
+width="0" height="0"
+src=""
+allow="autoplay">
+</iframe>
+
+<div id="hearts"></div>
+
+<!-- PAGE 1 -->
+<div id="start" class="page active">
+<h1>Do you love me? ❤️</h1>
+<button onclick="yesLove()">Yes</button>
+<button onclick="noLove()">No</button>
+</div>
+
+<!-- YES MEME -->
+<div id="yesMeme" class="page">
+<iframe src="https://tenor.com/embed/17078156"
+width="300" height="300"></iframe>
+<br><br>
+<button onclick="openLetter()">Continue</button>
+</div>
+
+<!-- NO MEME -->
+<div id="noMeme" class="page">
+<iframe src="https://tenor.com/embed/17468683305861986751"
+width="300" height="300"></iframe>
+<p>okay I'll give you one more chance 😌</p>
+<button onclick="backStart()">Try Again</button>
+</div>
+
+<!-- SECRET MESSAGE -->
+<div id="letter" class="page">
+<h1>💌 A Letter For You</h1>
+
+<p>
+We've gone through a lot, you had your own struggles and I had my own but the only thing that matter is we are still together after everything thing, ham dono ke liye ye time boht mushkil tha, tumne bhi boht kuch jhela hai aur maine bhi, aur yaha koi competition nhi chal rha jo mai bolu ki mai tumse jyada sad hu ya mera dukh jyada bada hai, it's not like that, hamne ek dusre ke sath compete krne nhi balki support krne ke liye hai na betuuuu, I really love you so muchhh.. We have to accept everything and move on together, and I'm ready for it, the only thing I want to ask is, are you ready for our new future, for loving each other again...Will you be my forever Mr. Rajat Biswas❤??
+</p>
+
+<h2>Will you be my forever? ❤️</h2>
+<button onclick="foreverYes()">Yes</button>
+<button onclick="foreverNo()">No</button>
+</div>
+
+<!-- HAPPY END -->
+<div id="happy" class="page">
+<iframe src="https://tenor.com/embed/15197677"
+width="300" height="300"></iframe>
+<h1>You are stuck with me forever now ❤️</h1>
+</div>
+
+<!-- SLIPPER MEME -->
+<div id="slipper" class="page">
+<iframe src="https://tenor.com/embed/15965409"
+width="300" height="300"></iframe>
+<h1>Wrong answer 😭🩴 Try again!</h1>
+<button onclick="backLetter()">Go Back</button>
+</div>
+
+<script>
+
+function show(id){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+}
+
+function yesLove(){ show("yesMeme"); }
+
+function noLove(){ show("noMeme"); }
+
+function backStart(){ show("start"); }
+
+function openLetter(){
+show("letter");
+startMusic();
+startHearts();
+}
+
+function foreverYes(){ show("happy"); }
+
+function foreverNo(){ show("slipper"); }
+
+function backLetter(){ show("letter"); }
+
+function startMusic(){
+document.getElementById("music").src =
+"https://www.youtube.com/embed/biizRyTNBv4?start=5&autoplay=1&mute=0";
+}
+
+function startHearts(){
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(15+Math.random()*20)+"px";
+document.getElementById("hearts").appendChild(heart);
+
+setTimeout(()=>heart.remove(),6000);
+},300);
+}
+
+</script>
+
+</body>
+</html>
